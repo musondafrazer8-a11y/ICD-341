@@ -1,0 +1,53 @@
+=== Descriptive statistics ===
+        area_ha  rainfall_mm  fertilizer_kg_ha  yield_t_ha  production_t
+count    120.00       120.00            120.00      120.00        120.00
+mean   11296.44       862.67            209.30        2.95      33941.78
+std     2530.04       144.10             35.61        0.46      11315.62
+min     6715.00       502.50            132.90        2.00      13490.00
+25%     9451.00       756.03            183.32        2.64      24818.50
+50%    10660.50       852.25            208.70        2.93      31606.00
+75%    12754.75       961.30            234.58        3.25      40506.50
+max    17930.00      1228.50            297.80        4.31      67471.00
+
+=== District summary ===
+          mean_production  sd_production  mean_yield  cv_yield_pct
+district                                                          
+Chipata          50636.93        8771.63        3.17         13.67
+Mkushi           46124.47        7691.56        3.44         11.25
+Choma            35420.53        7183.63        2.99         10.63
+Mazabuka         34403.00        6456.80        3.09         12.45
+Lusaka           30321.33        4889.07        2.94         11.23
+Kabwe            28091.60        5324.98        2.94         13.81
+Mumbwa           25493.93        4733.83        2.46         13.72
+Chongwe          21042.40        4315.10        2.58         13.38
+
+=== Trend === slope=0.0431 t/ha/yr, r=0.898, p=5.625e-06
+
+=== OLS: yield ~ rainfall + fertiliser + year ===
+                      coef   std_err        t  p_value
+intercept        -66.64387  15.45631 -4.31176  0.00003
+rainfall_mm        0.00167   0.00021  7.77515  0.00000
+fertilizer_kg_ha   0.00339   0.00094  3.61785  0.00044
+year               0.03344   0.00770  4.34371  0.00003
+{'R2': 0.4843, 'adj_R2': 0.471, 'n': 120, 'resid_sd': 0.3376}
+
+=== OLS with district fixed effects ===
+                      coef   std_err        t  p_value
+intercept        -65.77285  11.47814 -5.73027  0.00000
+rainfall_mm        0.00134   0.00019  7.08473  0.00000
+fertilizer_kg_ha   0.00342   0.00072  4.72371  0.00001
+year               0.03320   0.00572  5.80586  0.00000
+d_Choma            0.05705   0.09934  0.57430  0.56695
+d_Chongwe         -0.41319   0.09520 -4.34038  0.00003
+d_Kabwe           -0.16936   0.09314 -1.81833  0.07176
+d_Lusaka          -0.10817   0.09220 -1.17315  0.24329
+d_Mazabuka         0.13718   0.09474  1.44792  0.15051
+d_Mkushi           0.17235   0.09162  1.88101  0.06264
+d_Mumbwa          -0.52525   0.09448 -5.55948  0.00000
+{'R2': 0.7361, 'adj_R2': 0.7119, 'n': 120, 'resid_sd': 0.2491}
+
+=== Bootstrap 95% CI for mean yield === [2.867, 3.034] t/ha
+
+=== Monte Carlo === mean baseline=36,100 t; mean dry=34,213 t (-5.2%); P(production<20000 t): baseline=0.001, dry=0.002
+
+=== GMM BIC === {1: 164.9, 2: 179.0, 3: 191.0, 4: 200.3} -> best k = 1
